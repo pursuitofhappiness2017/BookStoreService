@@ -11,7 +11,14 @@ namespace BookStoreService
         {
             int total = books.Sum(x => x.Price);
 
-            if (books.GroupBy(x => x.Volume).Count() > 1)
+            int differntVolumes = books.GroupBy(x => x.Volume).Count();
+
+
+            if (differntVolumes > 2)
+            {
+                total = total * 90 / 100;
+            }
+            else if (differntVolumes > 1)
             {
                 total = total * 95 / 100;
             }
