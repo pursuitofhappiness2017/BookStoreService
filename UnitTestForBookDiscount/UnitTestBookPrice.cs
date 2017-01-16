@@ -64,5 +64,26 @@ namespace UnitTestBookDiscount
             //Assert
             Assert.AreEqual(expect, actual);
         }
+
+        [TestMethod]
+        public void 一二三四集各買了一本()
+        {
+            //Arrange
+            var order = new List<Book>()
+            {
+                new Book() { Name = "Harry Potter Vol.1", Volume = 1, Price = 100 },
+                new Book() { Name = "Harry Potter Vol.2", Volume = 2, Price = 100 },
+                new Book() { Name = "Harry Potter Vol.3", Volume = 3, Price = 100 },
+                new Book() { Name = "Harry Potter Vol.4", Volume = 4, Price = 100 },
+            };
+
+            var expect = 320;
+
+            //Act
+            var actual = new BookPricing().CalculatePrice(order);
+
+            //Assert
+            Assert.AreEqual(expect, actual);
+        }
     }
 }
