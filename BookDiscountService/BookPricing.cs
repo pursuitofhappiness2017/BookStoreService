@@ -9,17 +9,31 @@ namespace BookStoreService
     {
         public int CalculatePrice(IEnumerable<Book> books)
         {
-            int total = books.Sum(x => x.Price);
+            int total = 0;
 
-            total = total * GetDiscount(books) / 100;
+            while (books.Any())
+            {
+                var bookSet = GetBookSet(books);
+
+                var discount = GetDiscount(bookSet.Count());
+
+                total += bookSet.Sum(x => x.Price) * discount / 100;
+
+                books = books.Except(bookSet);
+            }
 
             return total;
         }
 
-        private int GetDiscount(IEnumerable<Book> books)
+        private IEnumerable<Book> GetBookSet(IEnumerable<Book> books)
         {
-            int differntVolumes = books.GroupBy(x => x.Volume).Count();
+            var set = books.GroupBy(x => x.Volume).Select(x => x.First());
 
+            return set;
+        }
+
+        private int GetDiscount(int differntVolumes)
+        {
             if(differntVolumes > 4)
             {
                 return 75; 
