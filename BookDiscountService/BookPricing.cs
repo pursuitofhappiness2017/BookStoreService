@@ -11,26 +11,32 @@ namespace BookStoreService
         {
             int total = books.Sum(x => x.Price);
 
-            int differntVolumes = books.GroupBy(x => x.Volume).Count();
-
-            if (differntVolumes > 4)
-            {
-                total = total * 75 / 100;
-            }
-            else if (differntVolumes > 3)
-            {
-                total = total * 80 / 100;
-            }
-            else if (differntVolumes > 2)
-            {
-                total = total * 90 / 100;
-            }
-            else if (differntVolumes > 1)
-            {
-                total = total * 95 / 100;
-            }
+            total = total * GetDiscount(books) / 100;
 
             return total;
+        }
+
+        private int GetDiscount(IEnumerable<Book> books)
+        {
+            int differntVolumes = books.GroupBy(x => x.Volume).Count();
+
+            if(differntVolumes > 4)
+            {
+                return 75; 
+            }
+
+            switch (differntVolumes)
+            {
+                case 4:
+                    return 80;
+                case 3:
+                    return 90;
+                case 2:
+                    return 95;
+                case 1:
+                default:
+                    return 100;
+            }
         }
     }
 
