@@ -11,7 +11,7 @@ namespace BookStoreService
         {
             int total = 0;
 
-            while (books.Any())
+            if (books.Any())
             {
                 var bookSet = GetBookSet(books);
 
@@ -19,7 +19,7 @@ namespace BookStoreService
 
                 total += bookSet.Sum(x => x.Price) * discount / 100;
 
-                books = books.Except(bookSet);
+                total += CalculatePrice(books.Except(bookSet));
             }
 
             return total;
