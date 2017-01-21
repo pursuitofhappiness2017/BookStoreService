@@ -12,7 +12,7 @@ namespace UnitTestBookDiscount
         public void 第一集買了一本其他都沒買()
         {
             //Arrange
-            var order = new List<Book>()
+            var books = new List<Book>()
             {
                 new Book() { Name = "Harry Potter Vol.1", Volume = 1, Price = 100 },
             };
@@ -20,7 +20,7 @@ namespace UnitTestBookDiscount
             var expect = 100;
 
             //Act
-            var actual = new BookPricing().CalculatePrice(order);
+            var actual = new BookPricing().CalculatePrice(books);
 
             //Assert
             Assert.AreEqual(expect, actual);
@@ -30,7 +30,7 @@ namespace UnitTestBookDiscount
         public void 第一集買了一本第二集也買了一本()
         {
             //Arrange
-            var order = new List<Book>()
+            var books = new List<Book>()
             {
                 new Book() { Name = "Harry Potter Vol.1", Volume = 1, Price = 100 },
                 new Book() { Name = "Harry Potter Vol.2", Volume = 2, Price = 100 },
@@ -39,7 +39,7 @@ namespace UnitTestBookDiscount
             var expect = 190;
 
             //Act
-            var actual = new BookPricing().CalculatePrice(order);
+            var actual = new BookPricing().CalculatePrice(books);
 
             //Assert
             Assert.AreEqual(expect, actual);
@@ -49,7 +49,7 @@ namespace UnitTestBookDiscount
         public void 一二三集各買了一本()
         {
             //Arrange
-            var order = new List<Book>()
+            var books = new List<Book>()
             {
                 new Book() { Name = "Harry Potter Vol.1", Volume = 1, Price = 100 },
                 new Book() { Name = "Harry Potter Vol.2", Volume = 2, Price = 100 },
@@ -59,7 +59,7 @@ namespace UnitTestBookDiscount
             var expect = 270;
 
             //Act
-            var actual = new BookPricing().CalculatePrice(order);
+            var actual = new BookPricing().CalculatePrice(books);
 
             //Assert
             Assert.AreEqual(expect, actual);
@@ -69,7 +69,7 @@ namespace UnitTestBookDiscount
         public void 一二三四集各買了一本()
         {
             //Arrange
-            var order = new List<Book>()
+            var books = new List<Book>()
             {
                 new Book() { Name = "Harry Potter Vol.1", Volume = 1, Price = 100 },
                 new Book() { Name = "Harry Potter Vol.2", Volume = 2, Price = 100 },
@@ -80,7 +80,7 @@ namespace UnitTestBookDiscount
             var expect = 320;
 
             //Act
-            var actual = new BookPricing().CalculatePrice(order);
+            var actual = new BookPricing().CalculatePrice(books);
 
             //Assert
             Assert.AreEqual(expect, actual);
@@ -90,7 +90,7 @@ namespace UnitTestBookDiscount
         public void 一次買了整套一二三四五集各買了一本()
         {
             //Arrange
-            var order = new List<Book>()
+            var books = new List<Book>()
             {
                 new Book() { Name = "Harry Potter Vol.1", Volume = 1, Price = 100 },
                 new Book() { Name = "Harry Potter Vol.2", Volume = 2, Price = 100 },
@@ -102,7 +102,7 @@ namespace UnitTestBookDiscount
             var expect = 375;
 
             //Act
-            var actual = new BookPricing().CalculatePrice(order);
+            var actual = new BookPricing().CalculatePrice(books);
 
             //Assert
             Assert.AreEqual(expect, actual);
@@ -112,7 +112,7 @@ namespace UnitTestBookDiscount
         public void 一二集各買了一本第三集買了兩本()
         {
             //Arrange
-            var order = new List<Book>()
+            var books = new List<Book>()
             {
                 new Book() { Name = "Harry Potter Vol.1", Volume = 1, Price = 100 },
                 new Book() { Name = "Harry Potter Vol.2", Volume = 2, Price = 100 },
@@ -123,7 +123,7 @@ namespace UnitTestBookDiscount
             var expect = 370;
 
             //Act
-            var actual = new BookPricing().CalculatePrice(order);
+            var actual = new BookPricing().CalculatePrice(books);
 
             //Assert
             Assert.AreEqual(expect, actual);
@@ -133,7 +133,7 @@ namespace UnitTestBookDiscount
         public void 第一集買了一本第二三集各買了兩本()
         {
             //Arrange
-            var order = new List<Book>()
+            var books = new List<Book>()
             {
                 new Book() { Name = "Harry Potter Vol.1", Volume = 1, Price = 100 },
                 new Book() { Name = "Harry Potter Vol.2", Volume = 2, Price = 100 },
@@ -145,7 +145,7 @@ namespace UnitTestBookDiscount
             var expect = 460;
 
             //Act
-            var actual = new BookPricing().CalculatePrice(order);
+            var actual = new BookPricing().CalculatePrice(books);
 
             //Assert
             Assert.AreEqual(expect, actual);

@@ -15,6 +15,11 @@ namespace BookStoreService
             {
                 var bookSet = GetBookSet(books);
 
+                if (bookSet.Count() == 1)
+                {
+                    return books.Sum(x => x.Price);
+                }
+
                 var discount = GetDiscount(bookSet.Count());
 
                 total += bookSet.Sum(x => x.Price) * discount / 100;
@@ -34,23 +39,23 @@ namespace BookStoreService
 
         private int GetDiscount(int differntVolumes)
         {
-            if(differntVolumes > 4)
+            Dictionary<int, int> discount = new Dictionary<int, int>()
             {
-                return 75; 
+                { 1, 100},
+                { 2, 95},
+                { 3, 90},
+                { 4, 80},
+                { 5, 75},
+            };
+
+            int max = discount.Keys.Max();
+
+            if (differntVolumes > max)
+            {
+                return discount[max];
             }
 
-            switch (differntVolumes)
-            {
-                case 4:
-                    return 80;
-                case 3:
-                    return 90;
-                case 2:
-                    return 95;
-                case 1:
-                default:
-                    return 100;
-            }
+            return discount[differntVolumes];
         }
     }
 
